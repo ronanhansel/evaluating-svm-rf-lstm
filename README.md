@@ -48,10 +48,10 @@ which only differs a mere `.002` percentage point (this could be amount to the n
 }
 ```
 
-| ![img](plots/accuracy_fold_1.png) | ![img](plots/loss_fold_1.png) |
+| ![img](plots/svm_accuracy_fold_1.png) | ![img](plots/svm_loss_fold_1.png) |
 | --------------------------------- | ----------------------------- |
-| ![img](plots/accuracy_fold_2.png) | ![img](plots/loss_fold_2.png) |
-| ![img](plots/accuracy_fold_3.png) | ![img](plots/loss_fold_3.png) |
+| ![img](plots/svm_accuracy_fold_2.png) | ![img](plots/svm_loss_fold_2.png) |
+| ![img](plots/svm_accuracy_fold_3.png) | ![img](plots/svm_loss_fold_3.png) |
 
 ```bash
 Fold 1 Results:
@@ -79,9 +79,9 @@ Average Results across all folds:
   F1 Score: 0.9092
 ```
 
-| ![img](plots/confusion_matrix_fold_1.png) | ![img](plots/confusion_matrix_fold_2.png) |
+| ![img](plots/svm_confusion_matrix_fold_1.png) | ![img](plots/svm_confusion_matrix_fold_2.png) |
 | ----------------------------------------- | ----------------------------------------- |
-| ![img](plots/confusion_matrix_fold_3.png) |                                           |
+| ![img](plots/svm_confusion_matrix_fold_3.png) |                                           |
 
 ## LSTM
 
