@@ -1,12 +1,15 @@
 # Evaluating model's performance for SVM, RF and LSTM using MNIST dataset
 
-## Random Forest
+## Experiment
+
+### Random Forest
 
 ```json
 {
   "n_estimators": range(50, 1050, 50),
   "max_depth": {2, 5, 10, 15, 20, None},
-  "min_samples_split": range(2, 42, 2)
+  "min_samples_split": range(2, 42, 2),
+  "k_folds": 3
 }
 ```
 
@@ -40,16 +43,17 @@ which only differs a mere `.002` percentage point (this could be amount to the n
 
 ![img](img/RF-confusion-matrix.png)
 
-## SVM
+### SVM
 
 ```json
 {
-  "n_epochs": 100
+  "n_epochs": 100,
+  "k_folds": 3
 }
 ```
 
 | ![img](plots/svm_accuracy_fold_1.png) | ![img](plots/svm_loss_fold_1.png) |
-| --------------------------------- | ----------------------------- |
+| ------------------------------------- | --------------------------------- |
 | ![img](plots/svm_accuracy_fold_2.png) | ![img](plots/svm_loss_fold_2.png) |
 | ![img](plots/svm_accuracy_fold_3.png) | ![img](plots/svm_loss_fold_3.png) |
 
@@ -80,14 +84,16 @@ Average Results across all folds:
 ```
 
 | ![img](plots/svm_confusion_matrix_fold_1.png) | ![img](plots/svm_confusion_matrix_fold_2.png) |
-| ----------------------------------------- | ----------------------------------------- |
-| ![img](plots/svm_confusion_matrix_fold_3.png) |                                           |
+| --------------------------------------------- | --------------------------------------------- |
+| ![img](plots/svm_confusion_matrix_fold_3.png) |                                               |
 
-## LSTM
+### LSTM
 
 ```json
 {
-  "n_epochs": 100
+  "n_epochs": 100,
+  "patience": 5,
+  "k_folds": 3
 }
 ```
 
@@ -132,3 +138,35 @@ Average Results across all folds:
   Recall: 0.9645
   F1: 0.9645
 ```
+
+## Derivations
+
+![img](plots/model_comparison_log.png)
+
+```bash
+Average Accuracy:
+  RF: 0.9658
+  LSTM: 0.9645
+  SVM: 0.9093
+
+Average F1:
+  RF: 0.9696
+  LSTM: 0.9645
+  SVM: 0.9092
+
+Average Precision
+  RF: 0.9696
+  LSTM: 0.9647
+  SVM: 0.9096
+
+Average Recall:
+  RF: 0.9696
+  LSTM: 0.9645
+  SVM: 0.9093
+```
+
+All three models (SVM, LSTM, and Random Forest) achieved high accuracy on the MNIST dataset, indicating their effectiveness in classifying handwritten digits.
+
+- Random Forest: The Random Forest model exhibited excellent performance with optimized hyperparameters (650 estimators, max depth of 20, and min samples split of 2), achieving a validation accuracy of 0.971. However, using a large number of estimators can increase computational cost.
+- LSTM: The LSTM model also demonstrated strong performance, achieving an average accuracy of 0.9645 across all folds. Early stopping was triggered after around 20 epochs, indicating that further training might not significantly improve performance.
+- The models still suffers from distinguishing similar-shaped numbers such as `9` and `4`, `7` and `2`
